@@ -6,6 +6,7 @@ import Cart from './components/Cart'
 const App = () => {
   const [darkMode, setDarkMode] = useState(false)
   const [cartItems, setCartItems] = useState([])
+  const [category, setCategory] = useState('all')
 
   // TODO: Implement state for cart management
 
@@ -27,18 +28,23 @@ const App = () => {
 
       {/* TODO: Implement category filter dropdown */}
       <label>Filter by Category: </label>
-      <select>
+<select
+value={category}
+onChange={(event) => setCategory(event.target.value)}
+>
         <option value="all">All</option>
         <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
       </select>
 
       <ProductList
-        addtoCart={(products) => setCartItems([...cartItems, products])}
+        addToCart={(product) => setCartItems([...cartItems, product])}
+        category={category}
       />
 
       {/* TODO: Implement and render Cart component */}
       <Cart cartItems={cartItems} />
+
     </div>
   )
 }
